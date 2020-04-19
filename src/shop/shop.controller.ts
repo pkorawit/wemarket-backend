@@ -1,8 +1,8 @@
 import { Controller, Get, Param, Post, Body, Query } from '@nestjs/common'
 import { ShopService } from './shop.service'
-import { FindOneParamsDto } from 'src/shared/dtos/find-one-params.dto'
+import { FindOneParamsDto } from '../shared/dtos/find-one-params.dto'
 import { CreateShopDto } from './dtos/create-shop.dto'
-import { FindOptionsDto } from 'src/shared/dtos/find-option.dto'
+import { FindOptionsDto } from '../shared/dtos/find-option.dto'
 
 @Controller('shop')
 export class ShopController {

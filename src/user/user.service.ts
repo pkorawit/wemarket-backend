@@ -2,7 +2,7 @@ import { Injectable, Logger } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
 import { User } from './interfaces/user.interface'
-import { FindOptions } from 'src/shared/interfaces/find-options.interface'
+import { FindOptions } from '../shared/interfaces/find-options.interface'
 
 @Injectable()
 export class UserService {
