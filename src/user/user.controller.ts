@@ -1,17 +1,16 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
-import { UserService } from './user.service';
-import { CreateUserDto } from './dtos/create-user.dto';
-import { FindOneParamsDto } from 'src/shared/dtos/find-one-params.dto';
+import { Controller, Get, Post, Body, Param, Query } from '@nestjs/common'
+import { UserService } from './user.service'
+import { CreateUserDto } from './dtos/create-user.dto'
+import { FindOneParamsDto } from 'src/shared/dtos/find-one-params.dto'
+import { FindOptionsDto } from 'src/shared/dtos/find-option.dto'
 
 @Controller('user')
 export class UserController {
-    constructor(
-        private readonly userService: UserService
-    ) { }
+    constructor(private readonly userService: UserService) {}
 
     @Get()
-    async find() {
-        return await this.userService.find()
+    async find(@Query() query: FindOptionsDto) {
+        return await this.userService.find(query)
     }
 
     @Get(':id')

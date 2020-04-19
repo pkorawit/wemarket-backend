@@ -1,17 +1,16 @@
-import { Controller, Get, Param, Post, Body } from '@nestjs/common';
-import { ShopService } from './shop.service';
-import { FindOneParamsDto } from 'src/shared/dtos/find-one-params.dto';
-import { CreateShopDto } from './dtos/create-shop.dto';
+import { Controller, Get, Param, Post, Body, Query } from '@nestjs/common'
+import { ShopService } from './shop.service'
+import { FindOneParamsDto } from 'src/shared/dtos/find-one-params.dto'
+import { CreateShopDto } from './dtos/create-shop.dto'
+import { FindOptionsDto } from 'src/shared/dtos/find-option.dto'
 
 @Controller('shop')
 export class ShopController {
-    constructor(
-        private readonly shopService: ShopService
-    ) { }
+    constructor(private readonly shopService: ShopService) {}
 
     @Get()
-    async find() {
-        return await this.shopService.find()
+    async find(@Query() query: FindOptionsDto) {
+        return await this.shopService.find(query)
     }
 
     @Get(':id')

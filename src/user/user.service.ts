@@ -1,19 +1,21 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { User } from './interfaces/user.interface';
+import { Injectable, Logger } from '@nestjs/common'
+import { InjectModel } from '@nestjs/mongoose'
+import { Model } from 'mongoose'
+import { User } from './interfaces/user.interface'
+import { FindOptions } from 'src/shared/interfaces/find-options.interface'
 
 @Injectable()
 export class UserService {
     private readonly logger = new Logger('User Service')
 
-    constructor(
-        @InjectModel('User') private readonly UserModel: Model<User>,
-    ) { }
+    constructor(@InjectModel('User') private readonly UserModel: Model<User>) {}
 
-    async find() {
+    async find(options?: Partial<FindOptions>) {
         this.logger.log('Find Users')
-        return await this.UserModel.find().exec()
+        return await this.UserModel.find()
+            .skip(options.skip)
+            .limit(options.take)
+            .exec()
     }
 
     async findOne(id: string) {

@@ -1,20 +1,22 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { Shop } from './interfaces/shop.interface';
-import { Location } from './interfaces/location.interface';
+import { Injectable, Logger } from '@nestjs/common'
+import { InjectModel } from '@nestjs/mongoose'
+import { Model } from 'mongoose'
+import { Shop } from './interfaces/shop.interface'
+import { Location } from './interfaces/location.interface'
+import { FindOptions } from 'src/shared/interfaces/find-options.interface'
 
 @Injectable()
 export class ShopService {
     private readonly logger = new Logger('Shop Service')
 
-    constructor(
-        @InjectModel('Shop') private readonly ShopModel: Model<Shop>
-    ) { }
+    constructor(@InjectModel('Shop') private readonly ShopModel: Model<Shop>) {}
 
-    async find() {
+    async find(options?: Partial<FindOptions>) {
         this.logger.log('Find shops')
-        return await this.ShopModel.find().exec()
+        return await this.ShopModel.find()
+            .skip(options.skip)
+            .limit(options.take)
+            .exec()
     }
 
     async findOne(id: string) {
@@ -27,9 +29,9 @@ export class ShopService {
         return await this.ShopModel.find({
             location: {
                 $geoWithin: {
-                    $geometry: location
-                }
-            }
+                    $geometry: location,
+                },
+            },
         })
     }
 
