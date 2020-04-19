@@ -14,4 +14,5 @@ RUN npm run build
 
 FROM build-stage AS production-stage
 ENV NODE_ENV=production
+CMD ["node", "dist/main"]
 EXPOSE 3000
