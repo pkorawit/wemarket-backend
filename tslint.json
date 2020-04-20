@@ -15,7 +15,8 @@
     "object-literal-sort-keys": false,
     "trailing-comma": [false],
     "semicolon": false,
-    "unified-signatures": false
+    "unified-signatures": false,
+    "max-classes-per-file": false
   },
   "rulesDirectory": []
 }

@@ -1,49 +1,125 @@
-import { User } from 'src/user/interfaces/user.interface';
-import { Address } from '../interfaces/address.interface';
-import { Product } from '../interfaces/product.interface';
-import { IsNotEmpty } from 'class-validator';
-import { Location } from '../interfaces/location.interface';
+import { User } from 'src/user/interfaces/user.interface'
+import { Address } from '../interfaces/address.interface'
+import { Product } from '../interfaces/product.interface'
+import { IsNotEmpty } from 'class-validator'
+import { Location } from '../interfaces/location.interface'
+import { ApiProperty } from '@nestjs/swagger'
 
 export class CreateShopDto {
-  @IsNotEmpty()
-  logoURL: string;
+    @ApiProperty()
+    @IsNotEmpty()
+    logoURL: string
 
-  @IsNotEmpty()
-  name: string;
+    @ApiProperty()
+    @IsNotEmpty()
+    name: string
 
-  @IsNotEmpty()
-  category: string;
+    @ApiProperty()
+    @IsNotEmpty()
+    category: string
 
-  @IsNotEmpty()
-  description: string;
+    @ApiProperty()
+    @IsNotEmpty()
+    description: string
 
-  @IsNotEmpty()
-  photoURL: string[];
+    @ApiProperty({ type: [String] })
+    @IsNotEmpty()
+    photoURL: string[]
 
-  @IsNotEmpty()
-  serviceType: string[];
+    @ApiProperty({ type: [String] })
+    @IsNotEmpty()
+    serviceType: string[]
 
-  @IsNotEmpty()
-  paymentType: string[];
+    @ApiProperty({ type: [String] })
+    @IsNotEmpty()
+    paymentType: string[]
 
-  @IsNotEmpty()
-  products: Product[];
+    @ApiProperty({ type: () => [ProductDto] })
+    @IsNotEmpty()
+    products: Product[]
 
-  @IsNotEmpty()
-  hashtags: string[];
+    @ApiProperty({ type: [String] })
+    @IsNotEmpty()
+    hashtags: string[]
 
-  @IsNotEmpty()
-  location: Location;
+    @ApiProperty({ type: () => LocationDto })
+    @IsNotEmpty()
+    location: Location
 
-  @IsNotEmpty()
-  telephone: string;
+    @ApiProperty()
+    @IsNotEmpty()
+    telephone: string
 
-  @IsNotEmpty()
-  contact: string;
+    @ApiProperty()
+    @IsNotEmpty()
+    contact: string
 
-  @IsNotEmpty()
-  address: Address;
+    @ApiProperty({ type: () => AddressDto })
+    @ApiProperty()
+    @IsNotEmpty()
+    address: Address
 
-  @IsNotEmpty()
-  owners: User[];
+    @ApiProperty({ type: () => [UserDto] })
+    @ApiProperty()
+    @IsNotEmpty()
+    owners: User[]
+}
+
+export class ProductDto {
+    @ApiProperty()
+    name: string
+
+    @ApiProperty()
+    price: number
+
+    @ApiProperty()
+    photoURL: string
+}
+
+export class LocationDto {
+    @ApiProperty()
+    type: string
+
+    @ApiProperty({ type: [Number] })
+    coordinates: number[]
+}
+
+export class AddressDto {
+    @ApiProperty()
+    detail: string
+
+    @ApiProperty()
+    subDistrict: string
+
+    @ApiProperty()
+    district: string
+
+    @ApiProperty()
+    province: string
+
+    @ApiProperty()
+    postalCode: string
+}
+
+export class UserDto {
+    @ApiProperty()
+    id?: string
+
+    @ApiProperty()
+    firstname: string
+
+    @ApiProperty()
+    lastname: string
+
+    @ApiProperty()
+    telephone: string
+
+    @ApiProperty()
+    gender: string
+
+    @ApiProperty()
+    photoURL: string
+
+    @ApiProperty()
+    email: string
 }

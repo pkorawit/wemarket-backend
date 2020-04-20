@@ -3,9 +3,10 @@ import { Address } from 'src/shop/interfaces/address.interface'
 import { Location } from 'src/shop/interfaces/location.interface'
 import { Product } from './product.interface'
 import { User } from 'src/user/interfaces/user.interface'
+import { ObjectID } from 'mongodb'
 
 export interface Shop extends Document {
-    id: string
+    _id: ObjectID
     logoURL: string
     name: string
     category: string
