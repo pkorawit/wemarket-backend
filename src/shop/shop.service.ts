@@ -21,7 +21,7 @@ export class ShopService {
 
     async findOne(id: string) {
         this.logger.log(`Find shop by id: ${id}`)
-        return await this.ShopModel.find().exec()
+        return await this.ShopModel.findById(id).exec()
     }
 
     async findNearby(location: Location) {
