@@ -12,8 +12,8 @@ export interface Shop extends Document {
     category: string
     description: string
     photoURL: string[]
-    serviceType: string[]
-    paymentType: string[]
+    serviceType: string
+    paymentType: string
     products: Product[]
     hashtags: string[]
     location: Location
