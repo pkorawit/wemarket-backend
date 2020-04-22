@@ -4,11 +4,14 @@ import { ValidationPipe } from '@nestjs/common'
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 import { ShopModule } from './shop/shop.module'
 import { UserModule } from './user/user.module'
+import * as bodyParser from 'body-parser'
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule)
     app.setGlobalPrefix('api/v1')
     app.useGlobalPipes(new ValidationPipe())
+    app.use(bodyParser.json({ limit: '50mb' }))
+    app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
     app.enableCors()
 
     const shopDocumentOptions = new DocumentBuilder()
