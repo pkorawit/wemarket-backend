@@ -7,7 +7,6 @@ import { ObjectID } from 'mongodb'
 
 export interface Shop extends Document {
     _id: ObjectID
-    logoURL: string
     name: string
     category: string
     description: string

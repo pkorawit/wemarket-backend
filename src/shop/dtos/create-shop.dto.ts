@@ -1,13 +1,13 @@
 import { User } from 'src/user/interfaces/user.interface'
 import { Address } from '../interfaces/address.interface'
 import { Product } from '../interfaces/product.interface'
-import { IsNotEmpty } from 'class-validator'
+import { IsNotEmpty, IsOptional } from 'class-validator'
 import { Location } from '../interfaces/location.interface'
-import { ApiProperty } from '@nestjs/swagger'
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
 
 export class CreateShopDto {
-    @ApiProperty()
-    @IsNotEmpty()
+    @ApiPropertyOptional()
+    @IsOptional()
     logoURL: string
 
     @ApiProperty()
@@ -26,20 +26,20 @@ export class CreateShopDto {
     @IsNotEmpty()
     photoURL: string[]
 
-    @ApiProperty({ type: [String] })
+    @ApiProperty()
     @IsNotEmpty()
-    serviceType: string[]
+    serviceType: string
 
-    @ApiProperty({ type: [String] })
+    @ApiProperty()
     @IsNotEmpty()
-    paymentType: string[]
+    paymentType: string
 
-    @ApiProperty({ type: () => [ProductDto] })
-    @IsNotEmpty()
+    @ApiPropertyOptional({ type: () => [ProductDto] })
+    @IsOptional()
     products: Product[]
 
-    @ApiProperty({ type: [String] })
-    @IsNotEmpty()
+    @ApiPropertyOptional({ type: [String] })
+    @IsOptional()
     hashtags: string[]
 
     @ApiProperty({ type: () => LocationDto })
@@ -55,12 +55,10 @@ export class CreateShopDto {
     contact: string
 
     @ApiProperty({ type: () => AddressDto })
-    @ApiProperty()
     @IsNotEmpty()
     address: Address
 
     @ApiProperty({ type: () => [UserDto] })
-    @ApiProperty()
     @IsNotEmpty()
     owners: User[]
 }

@@ -36,6 +36,7 @@ export class ShopService {
     }
 
     async create(shop: Partial<Shop>) {
+        this.logger.log('Create shop')
         return await new this.ShopModel(shop).save()
     }
 }
