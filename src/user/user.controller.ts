@@ -3,6 +3,7 @@ import { UserService } from './user.service'
 import { CreateUserDto } from './dtos/create-user.dto'
 import { FindOptionsDto } from '../shared/dtos/find-option.dto'
 import { FindOneParamsDto } from '../shared/dtos/find-by-id-params.dto'
+import { ObjectId } from 'mongodb'
 
 @Controller('user')
 export class UserController {
@@ -20,6 +21,10 @@ export class UserController {
 
     @Post()
     async create(@Body() body: CreateUserDto) {
-        return await this.userService.create(body)
+        const { _id, ...user } = body
+        return await this.userService.create({
+            _id: new ObjectId(_id),
+            ...user,
+        })
     }
 }
