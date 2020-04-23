@@ -14,28 +14,28 @@ export class CreateShopDto {
     @IsOptional()
     logoURL: string
 
-    @ApiProperty()
-    @IsNotEmpty()
+    @ApiPropertyOptional()
+    @IsOptional()
     name: string
 
-    @ApiProperty()
-    @IsNotEmpty()
+    @ApiPropertyOptional()
+    @IsOptional()
     category: string
 
-    @ApiProperty()
-    @IsNotEmpty()
+    @ApiPropertyOptional()
+    @IsOptional()
     description: string
 
-    @ApiProperty({ type: [String] })
-    @IsNotEmpty()
+    @ApiPropertyOptional({ type: [String] })
+    @IsOptional()
     photoURL: string[]
 
-    @ApiProperty()
-    @IsNotEmpty()
+    @ApiPropertyOptional()
+    @IsOptional()
     serviceType: string
 
-    @ApiProperty()
-    @IsNotEmpty()
+    @ApiPropertyOptional()
+    @IsOptional()
     paymentType: string
 
     @ApiPropertyOptional({ type: () => [ProductDto] })
@@ -46,20 +46,20 @@ export class CreateShopDto {
     @IsOptional()
     hashtags: string[]
 
-    @ApiProperty({ type: () => LocationDto })
-    @IsNotEmpty()
+    @ApiPropertyOptional({ type: () => LocationDto })
+    @IsOptional()
     location: Location
 
-    @ApiProperty()
-    @IsNotEmpty()
+    @ApiPropertyOptional()
+    @IsOptional()
     telephone: string
 
-    @ApiProperty()
-    @IsNotEmpty()
+    @ApiPropertyOptional()
+    @IsOptional()
     contact: string
 
-    @ApiProperty({ type: () => AddressDto })
-    @IsNotEmpty()
+    @ApiPropertyOptional({ type: () => AddressDto })
+    @IsOptional()
     address: Address
 
     @ApiProperty()
