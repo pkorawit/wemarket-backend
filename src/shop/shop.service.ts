@@ -45,4 +45,9 @@ export class ShopService {
         this.logger.log('Create shop')
         return await new this.ShopModel(shop).save()
     }
+
+    async update(_shop: Partial<Shop>) {
+        this.logger.log('Update shop')
+        return await this.ShopModel.update({ _id: _shop._id }, _shop)
+    }
 }

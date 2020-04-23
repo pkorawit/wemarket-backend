@@ -26,5 +26,5 @@ export const ShopSchema = new Schema(
             },
         },
     },
-    { collection: 'Shop' },
+    { collection: 'Shop', id: false },
 )
