@@ -35,6 +35,12 @@ export class ShopService {
         })
     }
 
+    async findByUserId(userId: string) {
+        return await this.ShopModel.find({
+            owner: userId,
+        }).exec()
+    }
+
     async create(shop: Partial<Shop>) {
         this.logger.log('Create shop')
         return await new this.ShopModel(shop).save()

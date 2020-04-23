@@ -3,6 +3,7 @@ import { ShopService } from './shop.service'
 import { FindOneParamsDto } from '../shared/dtos/find-by-id-params.dto'
 import { CreateShopDto } from './dtos/create-shop.dto'
 import { FindOptionsDto } from '../shared/dtos/find-option.dto'
+import { ObjectId } from 'mongodb'
 
 @Controller('shop')
 export class ShopController {
@@ -18,8 +19,17 @@ export class ShopController {
         return await this.shopService.findOne(params.id)
     }
 
+    @Get('user/:id')
+    async findByUserId(@Param() params: FindOneParamsDto) {
+        return await this.shopService.findByUserId(params.id)
+    }
+
     @Post()
     async create(@Body() body: CreateShopDto) {
-        return await this.shopService.create(body)
+        const { _id, ...blog } = body
+        return await this.shopService.create({
+            _id: new ObjectId(_id),
+            ...blog,
+        })
     }
 }

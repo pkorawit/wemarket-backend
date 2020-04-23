@@ -14,7 +14,7 @@ export const ShopSchema = new Schema(
         telephone: String,
         contact: String,
         address: Object,
-        owners: String,
+        owner: String,
         location: {
             type: {
                 type: String,

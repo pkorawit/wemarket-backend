@@ -64,7 +64,7 @@ export class CreateShopDto {
 
     @ApiProperty()
     @IsNotEmpty()
-    owners: string
+    owner: string
 }
 
 export class ProductDto {

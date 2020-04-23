@@ -19,5 +19,5 @@ export interface Shop extends Document {
     telephone: string
     contact: string
     address: Address
-    owners: string
+    owner: string
 }
