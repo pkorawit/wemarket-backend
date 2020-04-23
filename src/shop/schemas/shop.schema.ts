@@ -1,7 +1,9 @@
 import { Schema } from 'mongoose'
+import { ObjectId } from 'mongodb'
 
 export const ShopSchema = new Schema(
     {
+        _id: ObjectId,
         name: String,
         category: String,
         description: String,
@@ -12,7 +14,7 @@ export const ShopSchema = new Schema(
         telephone: String,
         contact: String,
         address: Object,
-        owners: [Object],
+        owners: String,
         location: {
             type: {
                 type: String,
