@@ -3,7 +3,6 @@ import { ObjectId } from 'mongodb'
 
 export const ShopSchema = new Schema(
     {
-        _id: ObjectId,
         name: String,
         category: String,
         description: String,

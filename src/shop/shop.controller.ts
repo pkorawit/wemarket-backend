@@ -26,10 +26,6 @@ export class ShopController {
 
     @Post()
     async create(@Body() body: CreateShopDto) {
-        const { _id, ...blog } = body
-        return await this.shopService.create({
-            _id: new ObjectId(_id),
-            ...blog,
-        })
+        return await this.shopService.create(body)
     }
 }

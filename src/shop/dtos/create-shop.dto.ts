@@ -6,10 +6,6 @@ import { Location } from '../interfaces/location.interface'
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
 
 export class CreateShopDto {
-    @ApiProperty()
-    @IsNotEmpty()
-    _id: string
-
     @ApiPropertyOptional()
     @IsOptional()
     logoURL: string
