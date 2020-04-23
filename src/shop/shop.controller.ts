@@ -1,9 +1,10 @@
-import { Controller, Get, Param, Post, Body, Query } from '@nestjs/common'
+import { Controller, Get, Param, Post, Body, Query, Put } from '@nestjs/common'
 import { ShopService } from './shop.service'
 import { FindOneParamsDto } from '../shared/dtos/find-by-id-params.dto'
 import { CreateShopDto } from './dtos/create-shop.dto'
 import { FindOptionsDto } from '../shared/dtos/find-option.dto'
 import { ObjectId } from 'mongodb'
+import { UpdateShopDto } from './dtos/update-shop.dto'
 
 @Controller('shop')
 export class ShopController {
@@ -27,5 +28,16 @@ export class ShopController {
     @Post()
     async create(@Body() body: CreateShopDto) {
         return await this.shopService.create(body)
+    }
+
+    @Put(':id')
+    async updateShop(
+        @Body() body: UpdateShopDto,
+        @Param() params: FindOneParamsDto,
+    ) {
+        return await this.shopService.update({
+            _id: new ObjectId(params.id),
+            ...body,
+        })
     }
 }
