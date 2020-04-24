@@ -26,4 +26,8 @@ export class UserService {
     async create(user: Partial<User>) {
         return await new this.UserModel(user).save()
     }
+
+    async update(_user: Partial<User>) {
+        return await this.UserModel.update({ _id: _user._id }, _user)
+    }
 }

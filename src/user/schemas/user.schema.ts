@@ -11,5 +11,5 @@ export const UserSchema = new Schema(
         photoURL: String,
         email: String,
     },
-    { collection: 'User' },
+    { collection: 'User', id: false },
 )

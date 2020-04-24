@@ -1,9 +1,10 @@
-import { Controller, Get, Post, Body, Param, Query } from '@nestjs/common'
+import { Controller, Get, Post, Body, Param, Query, Put } from '@nestjs/common'
 import { UserService } from './user.service'
 import { CreateUserDto } from './dtos/create-user.dto'
 import { FindOptionsDto } from '../shared/dtos/find-option.dto'
 import { FindOneParamsDto } from '../shared/dtos/find-by-id-params.dto'
 import { ObjectId } from 'mongodb'
+import { UpdateUserDto } from './dtos/update-user.dto'
 
 @Controller('user')
 export class UserController {
@@ -26,5 +27,11 @@ export class UserController {
             _id: new ObjectId(_id),
             ...user,
         })
+    }
+
+    @Put(':id')
+    async update(@Body() body: UpdateUserDto, @Param() params: FindOneParamsDto) {
+        const { _id, ..._body } = body
+        return await this.userService.update({ _id: new ObjectId(_id), ..._body })
     }
 }
