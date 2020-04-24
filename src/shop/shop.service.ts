@@ -13,7 +13,7 @@ export class ShopService {
 
     async find(options?: Partial<FindOptions>) {
         this.logger.log('Find shops')
-        return await this.ShopModel.find()
+        return await this.ShopModel.find({ name: { $ne: null } })
             .skip(options.skip)
             .limit(options.take)
             .exec()
