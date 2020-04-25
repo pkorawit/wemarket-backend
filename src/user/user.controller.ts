@@ -15,9 +15,9 @@ export class UserController {
         return await this.userService.find(query)
     }
 
-    @Get(':id')
-    async findOne(@Param() params: FindOneParamsDto) {
-        return await this.userService.findOne(params.id)
+    @Get(':id/shop')
+    async getOwnedShop(@Param() params: FindOneParamsDto) {
+        return await this.userService.getOwnedShop(params.id)
     }
 
     @Post()
@@ -28,5 +28,10 @@ export class UserController {
     @Put(':id')
     async update(@Body() body: UpdateUserDto, @Param() params: FindOneParamsDto) {
         return await this.userService.update(body)
+    }
+
+    @Get(':id')
+    async findOne(@Param() params: FindOneParamsDto) {
+        return await this.userService.findOne(params.id)
     }
 }

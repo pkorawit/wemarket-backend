@@ -3,12 +3,13 @@ import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
 import { User } from './interfaces/user.interface'
 import { FindOptions } from '../shared/interfaces/find-options.interface'
+import { Shop } from 'src/shop/interfaces/shop.interface'
 
 @Injectable()
 export class UserService {
     private readonly logger = new Logger('User Service')
 
-    constructor(@InjectModel('User') private readonly UserModel: Model<User>) {}
+    constructor(@InjectModel('User') private readonly UserModel: Model<User>, @InjectModel('User') private readonly ShopModel: Model<Shop>) {}
 
     async find(options?: Partial<FindOptions>) {
         this.logger.log('Find Users')
@@ -29,5 +30,9 @@ export class UserService {
 
     async update(user: Partial<User>) {
         return await this.UserModel.update({ _id: user._id }, user)
+    }
+
+    async getOwnedShop(uid: string) {
+        return await this.ShopModel.findOne({ owner: uid })
     }
 }
