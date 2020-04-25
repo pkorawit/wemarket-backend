@@ -15,9 +15,9 @@ export class ShopController {
         return await this.shopService.find(query)
     }
 
-    @Get(':id')
-    async findOne(@Param() params: FindOneParamsDto) {
-        return await this.shopService.findOne(params.id)
+    @Get('owned')
+    async getOwnedShop(@Query() query: FindOneParamsDto) {
+        return await this.shopService.getOwnedShop(query.id)
     }
 
     @Get('user/:id')
@@ -31,13 +31,15 @@ export class ShopController {
     }
 
     @Put(':id')
-    async updateShop(
-        @Body() body: UpdateShopDto,
-        @Param() params: FindOneParamsDto,
-    ) {
+    async updateShop(@Body() body: UpdateShopDto, @Param() params: FindOneParamsDto) {
         return await this.shopService.update({
             _id: new ObjectId(params.id),
             ...body,
         })
+    }
+
+    @Get(':id')
+    async findOne(@Param() params: FindOneParamsDto) {
+        return await this.shopService.findOne(params.id)
     }
 }

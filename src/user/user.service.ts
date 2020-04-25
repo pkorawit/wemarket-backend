@@ -25,14 +25,17 @@ export class UserService {
     }
 
     async create(user: Partial<User>) {
+        this.logger.log(`Create user`)
         return await new this.UserModel(user).save()
     }
 
     async update(user: Partial<User>) {
+        this.logger.log(`Update user: ${user._id}`)
         return await this.UserModel.update({ _id: user._id }, user)
     }
 
     async getOwnedShop(uid: string) {
+        this.logger.log(`Find owned shop by id: ${uid}`)
         return await this.ShopModel.findOne({ owner: uid })
     }
 }

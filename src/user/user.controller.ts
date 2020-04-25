@@ -5,6 +5,7 @@ import { FindOptionsDto } from '../shared/dtos/find-option.dto'
 import { FindOneParamsDto } from '../shared/dtos/find-by-id-params.dto'
 import { ObjectId } from 'mongodb'
 import { UpdateUserDto } from './dtos/update-user.dto'
+import { ShopService } from 'src/shop/shop.service'
 
 @Controller('user')
 export class UserController {

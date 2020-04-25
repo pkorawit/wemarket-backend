@@ -5,16 +5,8 @@ import { MongooseModule, getModelToken } from '@nestjs/mongoose'
 import { ShopSchema } from './schemas/shop.schema'
 
 @Module({
-    imports: [
-        MongooseModule.forFeature([{ name: 'Shop', schema: ShopSchema }]),
-    ],
-    providers: [
-        // {
-        //   provide: getModelToken('Shop'),
-        //   useValue: ShopSchema
-        // },
-        ShopService,
-    ],
+    imports: [MongooseModule.forFeature([{ name: 'Shop', schema: ShopSchema }])],
+    providers: [ShopService],
     controllers: [ShopController],
 })
 export class ShopModule {}

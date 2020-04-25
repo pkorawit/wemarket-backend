@@ -50,4 +50,9 @@ export class ShopService {
         this.logger.log('Update shop')
         return await this.ShopModel.update({ _id: _shop._id }, _shop)
     }
+
+    async getOwnedShop(uid: string) {
+        this.logger.log(`Find owned shop by id: ${uid}`)
+        return await this.ShopModel.findOne({ owner: uid })
+    }
 }
