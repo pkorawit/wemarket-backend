@@ -22,16 +22,11 @@ export class UserController {
 
     @Post()
     async create(@Body() body: CreateUserDto) {
-        const { _id, ...user } = body
-        return await this.userService.create({
-            _id: new ObjectId(_id),
-            ...user,
-        })
+        return await this.userService.create(body)
     }
 
     @Put(':id')
     async update(@Body() body: UpdateUserDto, @Param() params: FindOneParamsDto) {
-        const { _id, ..._body } = body
-        return await this.userService.update({ _id: new ObjectId(_id), ..._body })
+        return await this.userService.update(body)
     }
 }

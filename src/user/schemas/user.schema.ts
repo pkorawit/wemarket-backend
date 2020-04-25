@@ -3,7 +3,7 @@ import { ObjectID } from 'mongodb'
 
 export const UserSchema = new Schema(
     {
-        _id: ObjectID,
+        uid: String,
         firstname: String,
         lastname: String,
         telephone: String,

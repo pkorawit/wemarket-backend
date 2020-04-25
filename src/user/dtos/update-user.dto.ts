@@ -4,7 +4,7 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
 export class UpdateUserDto {
     @ApiProperty()
     @IsNotEmpty()
-    _id: string
+    uid: string
 
     @ApiPropertyOptional()
     @IsOptional()
