@@ -20,7 +20,7 @@ export class UserService {
 
     async findOne(id: string) {
         this.logger.log(`Find user by id: ${id}`)
-        return await this.UserModel.findById({ uid: id }).exec()
+        return await this.UserModel.findOne({ uid: id }).exec()
     }
 
     async create(user: Partial<User>) {
