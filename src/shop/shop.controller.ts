@@ -5,6 +5,7 @@ import { CreateShopDto } from './dtos/create-shop.dto'
 import { FindOptionsDto } from '../shared/dtos/find-option.dto'
 import { ObjectId } from 'mongodb'
 import { UpdateShopDto } from './dtos/update-shop.dto'
+import { GetNearbyShopDTO } from './dtos/get-nearby-shop.dto'
 
 @Controller('shop')
 export class ShopController {
@@ -18,6 +19,11 @@ export class ShopController {
     @Get('owned')
     async getOwnedShop(@Query() query: FindOneParamsDto) {
         return await this.shopService.getOwnedShop(query.id)
+    }
+
+    @Get('nearby')
+    async getNearbyShop(@Query() query: GetNearbyShopDTO) {
+        return await this.shopService.findNearby(query)
     }
 
     @Get('user/:id')

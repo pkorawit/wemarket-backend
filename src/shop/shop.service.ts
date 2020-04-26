@@ -4,6 +4,7 @@ import { Model } from 'mongoose'
 import { Shop } from './interfaces/shop.interface'
 import { Location } from './interfaces/location.interface'
 import { FindOptions } from '../shared/interfaces/find-options.interface'
+import { GetNearbyShopDTO } from './dtos/get-nearby-shop.dto'
 
 @Injectable()
 export class ShopService {
@@ -13,7 +14,7 @@ export class ShopService {
 
     async find(options?: Partial<FindOptions>) {
         this.logger.log('Find shops')
-        return await this.ShopModel.find({ name: { $ne: null } })
+        return await this.ShopModel.find({ name: { $ne: '' } })
             .skip(options.skip)
             .limit(options.take)
             .exec()
@@ -24,15 +25,20 @@ export class ShopService {
         return await this.ShopModel.findById(id).exec()
     }
 
-    async findNearby(location: Location) {
+    async findNearby(location: GetNearbyShopDTO) {
         this.logger.log('Find nearby shops')
         return await this.ShopModel.find({
             location: {
-                $geoWithin: {
-                    $geometry: location,
+                $near: {
+                    $geometry: {
+                        type: 'Point',
+                        coordinates: [location.lng, location.lat],
+                    },
+                    $maxDistance: 5000,
+                    $minDistance: 50,
                 },
             },
-        })
+        }).exec()
     }
 
     async findByUserId(userId: string) {
@@ -53,6 +59,6 @@ export class ShopService {
 
     async getOwnedShop(uid: string) {
         this.logger.log(`Find owned shop by id: ${uid}`)
-        return await this.ShopModel.findOne({ owner: uid })
+        return await this.ShopModel.findOne({ owner: uid, name: { $ne: '' } })
     }
 }
